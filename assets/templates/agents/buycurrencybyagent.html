@@ -1,0 +1,80 @@
+{%extends 'agents/agentbase.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area" xmlns="http://www.w3.org/1999/html">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+			</div>
+			<div class="col-md-12">
+				<div class="block">
+					<h2>Current Rate is</h2>
+					<p>Current Trading</p>
+                     <table border="2px">
+                                            <tr style="color: darkblue">
+                                                <th>S.No</th>
+                                                <th>Currency</th>
+                                                <th>Dollar</th>
+                                                <th>Indian Rupee</th>
+                                                <th>How Much You Want ..?</th>
+                                                <th>Buy</th>
+
+                                            </tr>
+                                            {% for i in objects %}
+                                            <tr style="color: WHITE">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.currencytype}}</td>
+                                                <td>${{i.doller}}</td>
+                                                <td>&#x20B9;{{i.rupee}}</td>
+                                                <form action="{%url 'agentbuycurrency' i.currencytype %}?cur={{i.currencytype}}" method="GET">
+                                                <td><input type="number" name="quantity" size="25" min="1" required></td>
+                                                <td> <button type="submit" class="btn btn-main" >Buy</button> </td>
+                                                </form>
+
+                                            {% endfor %}
+                                        </table>
+
+                    <p>Date : 28-Sept-2019 Trading Rates of the Crypto Currencies</p>
+                    <table border="2px">
+                        <tr><td>1  &#8383; = Bitcoin</td><td>$ 8152.5</td></tr>
+                        <tr><td>1 Etherum</td><td>$ 173.27</td></tr>
+                        <tr><td>1 Ripple</td><td>$ 0.243036</td></tr>
+
+                    </table>
+
+                     <h2>Recently Crypto Currency Changes List</h2>
+<table border="2px">
+                                            <tr style="color: RED">
+                                                <th>S.No</th>
+                                                <th>Crypto Currency Name</th>
+                                                <th>% Changes</th>
+                                                <th>Current Values</th>
+                                                <th>Original values</th>
+                                                <th>Channges</th>
+                                                <th>status</th>
+                                                <th>Updated Date</th>
+
+                                            </tr>
+                                            {% for i in objects1 %}
+                                            <tr style="color: YELLOW">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.currencyname}}</td>
+                                                <td>{{i.conversionRate}} %</td>
+                                                <td>$ {{i.newCurrencyValue}}</td>
+                                                <td>$ {{i.originalCurrencyValue}}</td>
+                                                <td>$ {{i.chnageValue}}</td>
+                                                <td> {{i.profitorloss}}</td>
+                                                <td>{{i.changedate}}</td>
+
+</tr>
+                                            {% endfor %}
+</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{%endblock%}

@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+            <div class="col-md-6 block">
+			<h2>User Login page</h2>
+                <form method="post" class="text-left clearfix mt-50" action="{% url 'userlogincheck'%}" >
+                    {%csrf_token%}
+                        <div class="form-group">
+                            <input type="email" name="email" class="form-control"  placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="pswd" class="form-control" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-main" >Sign In</button>
+
+                    </form>
+                <p class="mt-20">New in this site ?<a href="{%url 'usersignup'%}"> Create New Account</a></p>
+                <center>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <font color='YELLOW'> {{ message }}</font>
+                    {% endfor %}
+                    {% endif %}
+                </center>
+            </div>
+		</div>
+	</div>
+</section>
+{%endblock%}

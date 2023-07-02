@@ -1,0 +1,60 @@
+{%extends 'users/userbase.html'%}
+{%load static%}
+{%block contents%}
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+			</div>
+			<div class="col-md-12">
+                <div class="block">
+				  <h1>Complete The Transactions</h1>
+                    <p>The Agent Email is Autherised by Our Admin</p>
+                    <form class="text-left clearfix mt-30" action="{%url 'UserBuyingCoins'%}" method="POST">
+
+                     {%csrf_token%}
+              <div class="form-group"><label>Currency Name</label>
+              <input type="text" class="form-control" name="currencyname" value="{{currencyname}}" readonly>
+            </div>
+            <div class="form-group"><label>Buying Coins Quamtity </label>
+              <input type="text" class="form-control" name="quantity"  value=" {{quantity}}" readonly>
+            </div>
+            <div class="form-group"><label>Autherised Agent Email</label>
+              <input type="email" class="form-control" name="agentemail"value="{{agentemail}}" readonly>
+            </div>
+            <div class="form-group"><label>Ammount $</label>
+              <input type="text" class="form-control" name="singlecoingamount"value="{{bitBlock}}" readonly>
+            </div>
+            <div class="form-group"><label>Payable Ammount $</label>
+              <input type="text" class="form-control" name="payableammount"value="{{payableAmmount}}" readonly>
+            </div>
+            <div class="form-group"><label>Credit/Debit Card Number</label>
+              <input type="text" class="form-control" name="cardnumber" pattern="[123456789][0-9]{15}" placeholder="Credit / Debit Card Number" required>
+            </div>
+            <div class="form-group"><label>Name On Card</label>
+              <input type="text" class="form-control" name="nameoncard" style="text-transform: uppercase;" placeholder="Name On Card" required>
+            </div>
+            <div class="form-group"><label>Expiry Date</label>
+              <input type="month" class="form-control" name="cardexpiry" id="datepicker" min="2020-01" max="2030-12"  placeholder="Card Expiry Date" required>
+            </div>
+            <div class="form-group"><label>CVV Number</label>
+              <input type="text" class="form-control" name="cvv" pattern="[12345678][0-9]{2}" placeholder="CVV Number" required>
+            </div>
+            <button type="submit" class="btn btn-main text-center">Buy Crypto Currency</button>
+          </form>
+                <center>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <font color='YELLOW'> {{ message }}</font>
+                    {% endfor %}
+                    {% endif %}
+                </center>
+
+                </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{%endblock%}

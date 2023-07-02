@@ -1,0 +1,49 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+            <div class="col-md-6 block">
+			<h2>User Register Page</h2>
+                 <form class="text-left clearfix mt-30" action="{%url 'bituserregister'%}" method="post">
+                     {%csrf_token%}
+              <div class="form-group">
+              <input type="email" class="form-control" name="email" placeholder="Enter Valid Email ID" required>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" name="pswd"  placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="username" placeholder="Your  Name" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="mobile" pattern="{6789}{0-9}[9]" placeholder="Mobile Number" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="pan" style="text-transform: uppercase;" placeholder="PAN Account" required>
+            </div>
+
+            <div class="form-group">
+              <select id="listBox" class="form-control" name="state" onchange='selct_district(this.value)'></select>
+            </div>
+            <div class="form-group">
+               <select id='secondlist' class="form-control" name="location" required></select>
+            </div>
+            <button type="submit" class="btn btn-main text-center">Sign Up</button>
+          </form>
+          <p class="mt-20">Already hava an account ?<a href="{%url 'users'%}"> Login</a></p>
+                <center>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <font color='YELLOW'> {{ message }}</font>
+                    {% endfor %}
+                    {% endif %}
+                </center>
+            </div>
+
+        </div>
+	</div>
+</section>
+{%endblock%}

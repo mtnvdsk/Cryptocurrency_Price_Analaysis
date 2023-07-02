@@ -1,0 +1,54 @@
+{%extends 'admins/adminbase.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+                <div class="block">
+                    <h1>Vew Registered Users</h1>
+                                        <table border="2px">
+                                            <tr style="color: darkblue">
+                                                <th>S.No</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>PAN</th>
+                                                <th>State</th>
+                                                <th>Location</th>
+                                                <th>Status</th>
+                                                <th>Auth Key</th>
+                                                <th>Activate</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            {% for i in objects %}
+                                            <tr style="color: WHITE">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.username}}</td>
+                                                <td>{{i.email}}</td>
+                                                <td>{{i.mobile}}</td>
+                                                <td>{{i.pan}}</td>
+                                                <td>{{i.state}}</td>
+                                                <td>{{i.location}}</td>
+                                                <td>{{i.status}}</td>
+                                                <td>{{i.authkey}}</td>
+                                                <td>{{i.cdate}}</td>
+
+                                                {% if i.status == 'waiting' %}
+                                                <td><a class="btn-link" href="/activatewaitedusers/?uid={{ i.id }}"
+                                                       style="color:DARKBLUE">Activate</a></td>
+                                                {% else %}
+                                                <td> Activated</td>
+                                                {% endif %}
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                </div>
+
+			</div>
+
+		</div>
+	</div>
+</section>
+{%endblock%}

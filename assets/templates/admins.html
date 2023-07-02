@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+            <div class="col-md-6 block">
+			<h2>Admin Login page</h2>
+                <form class="text-left clearfix mt-50" action="{%url 'adminlogincheck'%}" method="post" >
+                    {%csrf_token%}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="adminid"  placeholder="Admin Login ID">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="pswd" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-main" >Sign In</button>
+
+                    </form>
+
+                <center>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <font color='YELLOW'> {{ message }}</font>
+                    {% endfor %}
+                    {% endif %}
+                </center>
+            </div>
+		</div>
+	</div>
+</section>
+{%endblock%}

@@ -1,0 +1,42 @@
+{%extends 'agents/agentbase.html'%}
+{%load static%}
+{%block contents%}
+<section class="hero-area">
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-6">
+				<div class="video-player">
+					<img class="img-fluid rounded" src="{%static 'images/slider/slider-bg-2.jpg'%}" alt="">
+					<a class="play-icon" href="javascript:void(0)">
+						<!--<i class="tf-ion-ios-play"  data-video="https://www.youtube.com/embed/g3-VxLQO7do?autoplay=1"></i>-->
+					</a>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="block">
+					<h2>Available Dataset for Predect test</h2>
+                    <table bgcolor="GREEN" border="2px">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Dataset</th>
+                            <th>Predict Test Start</th>
+                        </tr>
+                        {% for key,value in dict.items %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{value}}</td>
+                            <td><a href="{% url 'AgentredictTestProcess' value%}">Start Test</a> </td>
+                        </tr>
+
+                        {%endfor%}
+
+                        </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{%endblock%}

@@ -1,0 +1,77 @@
+{%extends 'users/userbase.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area" xmlns="http://www.w3.org/1999/html">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+			</div>
+			<div class="col-md-12">
+				<div class="block">
+                     <p>Purchased Coins</p>
+                    <table border="2px">
+                        <tr style="color: yellow">
+                                                <th>S.No</th>
+                                                <th>Currency Name</th>
+                                                <th>Quantity</th>
+                        </tr>
+                         {% for i in object1 %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i.currencyName}}</td>
+                            <td>{{i.quantity}}</td>
+
+                        </tr>
+                         {% endfor %}
+
+                    </table>
+					<h2>User Transaction History</h2>
+					<p>Current Trading</p>
+                     <table border="1px">
+                                            <tr style="color: darkblue">
+                                                <th>S.No</th>
+                                                <th>Customer Name</th>
+                                                <th>Email</th>
+                                                <th>Crypto Currency Name</th>
+                                                <th>Quantity</th>
+                                                <th>Agent Email</th>
+                                                <th>1 coin Ammount</th>
+                                                <th>Total Paid</th>
+                                                <th>Card Number</th>
+                                                <th>Name-on-Card</th>
+                                                <th>Expiry-Date</th>
+                                                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date</th>
+
+
+                                            </tr>
+                                            {% for i in object2 %}
+                                            <tr style="color: WHITE">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.customername}}</td>
+                                                <td>{{i.email}}</td>
+                                                <td>{{i.currencyname}}</td>
+                                                <td> {{i.quantity}}</td>
+                                                <td>{{i.agentemail}}</td>
+                                                <td>$ {{i.singlecoingamount}}</td>
+                                                <td>{{i.payableammount}}</td>
+                                                <td>{{i.cardnumber}}</td>
+                                                <td>{{i.nameoncard}}</td>
+                                                <td>{{i.cardexpiry}}</td>
+                                                <td>{{i.cdate}}</td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </table>
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{%endblock%}

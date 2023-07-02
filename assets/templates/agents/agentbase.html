@@ -1,0 +1,217 @@
+{% load static%}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Bingo One page parallax responsive HTML Template ">
+
+  <meta name="author" content="Themefisher.com">
+
+  <title>Bit-Bank</title>
+
+<!-- Mobile Specific Meta
+  ================================================== -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="{%static 'images/bitcoinnetwork.png'%}" />
+
+  <!-- CSS
+  ================================================== -->
+  <!-- Themefisher Icon font -->
+  <link rel="stylesheet" href="{%static 'plugins/themefisher-font.v-2/style.css'%}">
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{%static 'plugins/bootstrap/dist/css/bootstrap.min.css'%}">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="{%static 'plugins/slick-carousel/slick/slick.css'%}">
+  <link rel="stylesheet" href="{%static 'plugins/slick-carousel/slick/slick-theme.css'%}">
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+
+
+</head>
+
+<body id="body">
+
+ <!--
+  Start Preloader
+  ==================================== -->
+  <div id="preloader">
+    <div class="preloader">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+  <!--
+  End Preloader
+  ==================================== -->
+<!--
+Fixed Navigation
+==================================== -->
+
+<section class="header  navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-md">
+                    <a class="navbar-brand" href="#">
+                        <h3> Welcome Agenet { {{request.session.loggedagent}} }</h3> &nbsp; Cryptocurrency Price Analysis With Artificial Intelligence
+                    </a>
+                    <button class="navbar-toggler" type="button" value="Admin" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="tf-ion-android-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{%url 'AgentBuyCrypto'%}">Buy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'AgentHadCoins'%}">BitBucket</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'AgentLedgerStatus'%}">Block Bucket</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'AgentPredectionTest'%}">Predections</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!--
+Welcome Slider
+==================================== -->
+{%block contents%}
+{%endblock%}
+<!--
+Start Blog Section
+=========================================== -->
+<section class="blog section" id="blog">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="title text-center">
+					<h4>Our untold story</h4>
+					<h2>Bitcoin Knowledge Base.</h2>
+					<span class="border"></span>
+					<p>As for the LSTM model, it has a comparable performance with the ANN model in general, when predicting the one-day future prices of these cryptocurrencies, based on mean square error. It demonstrates that although ANN is lack of internal capability, it could effectively extract and use the useful information hidden in the historical price dynamics to predict a future price.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<!-- single blog post -->
+			<article class="col-12 col-md-6" >
+				<div class="post-item">
+					<div class="post-thumb">
+					  	<img class="img-fluid shadow rounded" src="{%static 'images/blog/post-1.jpg'%}" alt="Generic placeholder image">
+					</div>
+			  		<div class="post-title">
+				    	<h3 class="mt-0"><a href="">Ten things about Business</a></h3>
+			  		</div>
+			  		<div class="post-meta">
+			  			<span>By</span> <a href="" class="">Wang Yiying</a>
+			  		</div>
+			  		<div class="post-content">
+					    <p>Nowadays, investing in cryptocurrencies, like Bitcoin, is one of the efficient ways of earning money. For example, the rate of Bitcoin significant rises in 2017, from a relatively low point 963 USD on January 1ST 2017, to its peak 19186 USD on December 17th 2017, and it closed with 9475 USD at the end of the year. Consequently, the rate of return of bitcoin investment for 2017 was over 880%, which is an impressive and surprising scenery for most investors.  </p>
+			  		</div>
+
+				</div>
+			</article>
+			<!-- /single blog post -->
+
+			<!-- single blog post -->
+				<article class="col-12 col-md-6" >
+					<div class="post-item">
+						<div class="post-thumb">
+						  	<img class="img-fluid shadow rounded" src="{%static 'images/blog/post-2.jpg'%}" alt="Generic placeholder image">
+						</div>
+				  		<div class="post-title">
+					    	<h3 class="mt-0"><a href="">Something I need to tell you</a></h3>
+				  		</div>
+				  		<div class="post-meta">
+				  			<ul class="list-inline">
+				  				<li class="list-inline-item">
+				  					<span>By</span> <a href="" class="">Zang Yeze</a>
+				  				</li>
+				  				<li class="list-inline-item">
+				  					<span>By</span> <span> 978-1-7281-3430-7/19/$31.00 ©2019 IEEE</span>
+				  				</li>
+							</ul>
+				  		</div>
+				  		<div class="post-content">
+						    <p>Cryptocurrency is the peer-to-peer digital moneyory and payment system that exist online via a controlled algorithem. When a miner cracks an algorithem to record a block of transactions to public ledger named blockchain and the cryptocurrency is created when the block is added to the blockchain. It allows people to store and transfer through encryption protocol and distributed network. </p>
+				  		</div>
+
+					</div>
+				</article>
+			<!-- end single blog post -->
+
+		</div> <!-- end row -->
+	</div> <!-- end container -->
+</section> <!-- end section -->
+
+
+<!--
+Start Call To Action
+==================================== -->
+<section class="call-to-action section-sm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h2>Open account for free and start trading Bitcoins now!</h2>
+				<p>The price data comprised of four elements namely opening, high, low, closing prices. In this study, we analyse the price of three of the most popuer cryptocurrencies: Bitcoin, Ethereum and Ripple.</p>
+				<a href="" class="btn btn-main">Get Started</a>
+			</div>
+		</div> 		<!-- End row -->
+	</div>   	<!-- End container -->
+</section>   <!-- End section -->
+
+<footer id="footer" class="bg-one">
+
+  <div class="footer-bottom">
+    <h5>Copyright 2019. All Rights Reserved.</h5>
+    <h6>Design and Developed by <a href="">Alex Hales</a></h6>
+  </div>
+</footer> <!-- end footer -->
+
+    <!-- Main jQuery -->
+    <script src="{%static 'plugins/jquery/dist/jquery.min.js'%}"></script>
+    <!-- Bootstrap 3.7 -->
+    <script src="{%static 'plugins/bootstrap/dist/js/popper.min.js'%}"></script>
+    <script src="{%static 'plugins/bootstrap/dist/js/bootstrap.min.js'%}"></script>
+    <!-- Owl Carousel -->
+    <script src="{%static 'plugins/slick-carousel/slick/slick.min.js'%}"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Smooth Scroll js -->
+    <script src="{%static 'plugins/smooth-scroll/dist/js/smooth-scroll.min.js'%}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+
+    <!-- Custom js -->
+    <script src="{%static 'js/script.js'%}"></script>
+    <script src="{% static 'js/state.js' %}"></script>
+
+  </body>
+  </html>

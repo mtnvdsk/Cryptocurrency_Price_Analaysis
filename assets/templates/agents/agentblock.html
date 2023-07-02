@@ -1,0 +1,50 @@
+{%extends 'agents/agentbase.html'%}
+{%load static%}
+{%block contents%}
+
+<section class="hero-area" xmlns="http://www.w3.org/1999/html">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+			</div>
+			<div class="col-md-12">
+				<div class="block">
+					<h2>Current Ledger Blocks is ${{ledger}}</h2>
+					<p>Current Transactions</p>
+                     <table border="2px">
+                                            <tr style="color: darkblue">
+                                                <th>S.No</th>
+                                                <th>Customer Email</th>
+                                                <th>Agent Email</th>
+                                                <th>Coin Name</th>
+                                                <th>Quantity</th>
+                                                <th>Paid Ammount</th>
+                                                <th>Ledger Balance</th>
+
+                                            </tr>
+                                            {% for i in objects %}
+                                            <tr style="color: WHITE">
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.customeremail}}</td>
+                                                <td>{{i.agentemail}}</td>
+                                                <td>{{i.currencyname}}</td>
+                                                <td>{{i.quantity}}</td>
+                                                <td>$ {{i.paidammout}}</td>
+                                                <td>$ {{i.blockchainmoney}}</td>
+
+                                            {% endfor %}
+                                        </table>
+
+                    <p>Date : 28-Sept-2019 Trading Rates of the Crypto Currencies</p>
+                    <table border="2px">
+                        <tr><td>1  &#8383; = Bitcoin</td><td>$ 8152.5</td></tr>
+                        <tr><td>1 Etherum</td><td>$ 173.27</td></tr>
+                        <tr><td>1 Ripple</td><td>$ 0.243036</td></tr>
+                    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{%endblock%}

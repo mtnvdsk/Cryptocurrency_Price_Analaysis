@@ -1,0 +1,47 @@
+{%extends 'users/userbase.html'%}
+{%load static%}
+{%block contents%}
+<section class="hero-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+			</div>
+			<div class="col-md-12">
+                <div class="block">
+				  <h1>For Sale Avaialable Crypo Currencies</h1>
+                    <p>The Agent Email is Autherised by Our Admin</p>
+                    <table border="2px">
+                        <tr style="color: yellow">
+                                                <th>S.No</th>
+                                                <th>Currency Name</th>
+                                                <th>Agent Email</th>
+                                                <th>Quantity</th>
+                                                <th>How Much You Want ..?</th>
+                                                <th>Buy</th>
+                        </tr>
+                         {% for i in objects %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i.currencyName}}</td>
+                            <td>{{i.useremail}}</td>
+                            <td>{{i.quantity}}</td>
+                            <form action="{% url 'UserBuyQuantity'%}" method="POST">
+                                {%csrf_token%}
+                                <td><input type="number" name="quantity" size="25" min="1" max="{{i.quantity}}" required></td>
+                                <input type='hidden' name="agentemail" value="{{i.useremail}}"/>
+                                <input type='hidden' name="currencyname" value="{{i.currencyName}}"/>
+                             <td> <button type="submit" class="btn btn-main" >Buy</button> </td>
+                                                </form>
+
+                        </tr>
+                         {% endfor %}
+
+                    </table>
+                </div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{%endblock%}

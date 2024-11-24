@@ -7,6 +7,12 @@ import os
 import numpy as np
 #import tensorflow as tf # This code has been tested with TensorFlow 1.6
 from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from sklearn.metrics import mean_squared_error
 
 def predictionstart(dataset):
     df = pd.read_csv(dataset, delimiter=',',
@@ -168,4 +174,136 @@ def predictionstart(dataset):
         lbl_ind = lbl
         print('\tInputs: ', dat)
         print('\n\tOutput:', lbl)
+    def create_dataset(data, time_step=1):
+        X, y = [], []
+        for i in range(len(data) - time_step - 1):
+            a = data[i:(i + time_step), 0]
+            X.append(a)
+            y.append(data[i + time_step, 0])
+        return np.array(X), np.array(y)
 
+    def lstm_prediction(train_data, test_data):
+        # Reshape train_data for LSTM
+        train_data = train_data.reshape(-1, 1)
+        test_data = test_data.reshape(-1, 1)
+
+        # Normalize the data
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        scaled_train_data = scaler.fit_transform(train_data)
+        scaled_test_data = scaler.transform(test_data)
+
+        # Create datasets
+        time_step = 60  # Number of previous days to consider for prediction
+        X_train, y_train = create_dataset(scaled_train_data, time_step)
+        X_test, y_test = create_dataset(scaled_test_data, time_step)
+
+        # Reshape input to be [samples, time steps, features]
+        X_train = X_train.reshape(X_train.shape[0], X_train.shape[1], 1)
+        X_test = X_test.reshape(X_test.shape[0], X_test.shape[1], 1)
+
+        # Build the LSTM model
+        model = Sequential()
+        model.add(LSTM(50, return_sequences=True, input_shape=(X_train.shape[1], 1)))
+        model.add(Dropout(0.2))
+        model.add(LSTM(50, return_sequences=False))
+        model.add(Dropout(0.2))
+        model.add(Dense(1))  # Output layer
+
+        # Compile the model
+        model.compile(optimizer='adam', loss='mean_squared_error')
+
+        # Train the model
+        model.fit(X_train, y_train, epochs=50, batch_size=32)
+
+        # Make predictions
+        train_predict = model.predict(X_train)
+        test_predict = model.predict(X_test)
+
+        # Inverse transform to get actual prices
+        train_predict = scaler.inverse_transform(train_predict)
+        test_predict = scaler.inverse_transform(test_predict)
+
+        # Plotting results
+        plt.figure(figsize=(14, 7))
+        plt.plot(range(len(train_data)), train_data, label='Actual Prices', color='blue')
+        plt.plot(range(time_step, len(train_predict) + time_step), train_predict, label='Train Predictions', color='orange')
+        plt.plot(range(len(train_data) + (time_step * 2), len(train_data) + (time_step * 2) + len(test_predict)), test_predict, label='Test Predictions', color='red')
+        plt.title('Cryptocurrency Price Prediction using LSTM')
+        plt.xlabel('Days')
+        plt.ylabel('Price')
+        plt.legend()
+        plt.show()
+        train_predict = model.predict(X_train)
+        test_predict = model.predict(X_test)
+
+        # Inverse transform to get actual prices
+        train_predict = scaler.inverse_transform(train_predict)
+        test_predict = scaler.inverse_transform(test_predict)
+
+        # Calculate MSE and RMSE for LSTM
+        lstm_mse = mean_squared_error(train_data[time_step:], train_predict)
+        lstm_rmse = np.sqrt(lstm_mse)
+
+        print(f'LSTM Mean Squared Error: {lstm_mse:.5f}')
+        print(f'LSTM Root Mean Squared Error: {lstm_rmse:.5f}')
+
+    # Call the LSTM prediction function
+    lstm_prediction(train_data, test_data)
+    
+
+    def ann_prediction(train_data, test_data):
+        # Reshape train_data for ANN
+        train_data = train_data.reshape(-1, 1)
+        test_data = test_data.reshape(-1, 1)
+
+        # Normalize the data
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        scaled_train_data = scaler.fit_transform(train_data)
+        scaled_test_data = scaler.transform(test_data)
+
+        # Create datasets for ANN
+        time_step = 60  # Number of previous days to consider for prediction
+        X_train, y_train = create_dataset(scaled_train_data, time_step)
+        X_test, y_test = create_dataset(scaled_test_data, time_step)
+
+        # Reshape input to be [samples, features]
+        X_train = X_train.reshape(X_train.shape[0], X_train.shape[1])
+        X_test = X_test.reshape(X_test.shape[0], X_test.shape[1])
+
+        # Build the ANN model
+        model = Sequential()
+        model.add(Dense(50, activation='relu', input_shape=(X_train.shape[1],)))
+        model.add(Dense(25, activation='relu'))
+        model.add(Dense(1))  # Output layer
+
+        # Compile the model
+        model.compile(optimizer='adam', loss='mean_squared_error')
+
+        # Train the model
+        model.fit(X_train, y_train, epochs=100, batch_size=32)
+
+        # Make predictions
+        train_predict = model.predict(X_train)
+        test_predict = model.predict(X_test)
+
+        # Inverse transform to get actual prices
+        train_predict = scaler.inverse_transform(train_predict)
+        test_predict = scaler.inverse_transform(test_predict)
+
+        # Plotting results
+        plt.figure(figsize=(14, 7))
+        plt.plot(range(len(train_data)), train_data, label='Actual Prices', color='blue')
+        plt.plot(range(time_step, len(train_predict) + time_step), train_predict, label='Train Predictions', color='orange')
+        plt.plot(range(len(train_data) + (time_step * 2), len(train_data) + (time_step * 2) + len(test_predict)), test_predict, label='Test Predictions', color='red')
+        plt.title('Cryptocurrency Price Prediction using ANN')
+        plt.xlabel('Days')
+        plt.ylabel('Price')
+        plt.legend()
+        plt.show()
+        ann_mse = mean_squared_error(train_data[time_step:], train_predict)
+        ann_rmse = np.sqrt(ann_mse)
+
+        print(f'ANN Mean Squared Error: {ann_mse:.5f}')
+        print(f'ANN Root Mean Squared Error: {ann_rmse:.5f}')
+    # Call the ANN prediction function
+    ann_prediction(train_data, test_data)
